@@ -3,13 +3,14 @@ import { chart, home, login } from '@/utils/Icons'
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import { Button } from './ui/button'
 
 const Header = () => {
 
     const pathname = usePathname()
+    const router = useRouter()
 
     const menu = [
         {
@@ -50,14 +51,16 @@ const Header = () => {
                         <UserButton
                             appearance={{
                                 elements: {
-                                    userButtonAvatarBox: "w-12 h-12 border-2 rounded-full"
+                                    userButtonAvatarBox: "w-12 h-12 border-2 border-gray-300 rounded-full"
                                 }
                             }}
                         />
                     </SignedIn>
 
                     <SignedOut>
-                        <Button>
+                        <Button className='py-5 bg-blue-400 flex items-center gap-2 font-semibold text-lg rounded-lg hover:bg-blue-500/90'
+                            onClick={() => router.push("/sign-in")}
+                        >
                             {login}
                             Login / Sign Up
                         </Button>
