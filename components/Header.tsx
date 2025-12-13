@@ -1,10 +1,11 @@
 "use client"
-import { chart, home } from '@/utils/Icons'
+import { chart, home, login } from '@/utils/Icons'
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import { Button } from './ui/button'
 
 const Header = () => {
 
@@ -56,11 +57,10 @@ const Header = () => {
                     </SignedIn>
 
                     <SignedOut>
-                        <SignInButton>
-                            <button className="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold">
-                                Sign In
-                            </button>
-                        </SignInButton>
+                        <Button>
+                            {login}
+                            Login / Sign Up
+                        </Button>
                     </SignedOut>
                 </div>
             </nav>
