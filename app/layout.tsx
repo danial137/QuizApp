@@ -3,6 +3,7 @@ import { Inter, Nunito } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
+import ContextProvider from "@/providers/ContextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,12 +29,14 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </head>
       <ClerkProvider>
-        <body className={`${nunito.className}  antialiased`}>
-          <Header />
-          <main className="py-8 mx-[15rem] xl:mx-[25rem] h-full">
-            {children}
-          </main>
-        </body>
+        <ContextProvider>
+          <body className={`${nunito.className}  antialiased`}>
+            <Header />
+            <main className="py-8 mx-[15rem] xl:mx-[25rem] h-full">
+              {children}
+            </main>
+          </body>
+        </ContextProvider>
       </ClerkProvider>
     </html>
   );

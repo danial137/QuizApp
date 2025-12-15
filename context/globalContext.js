@@ -1,13 +1,25 @@
-import React from "react";
+"use client";
+import React, { createContext, useContext } from "react";
+import useCategories from "./useCategories"
 
+const GlobalContext = createContext(null);
 
-const GlobalContext = React.createContext();
+export const GlobalContextProvider = ({ children }) => {
 
-export const GlobalContextProvider = ({ }) => {
+    const { loading, categories } = useCategories()
 
-    const [globalState, setGlobalState] = React.useState({
-        user: null,
-        isAuth: true
-    })
+    console.log("Global", categories)
 
-}
+    return (
+        <GlobalContext.Provider value={{
+            loading,
+            categories
+        }}>
+            {children}
+        </GlobalContext.Provider>
+    );
+};
+
+export const useGlobalContext = () => {
+    return useContext(GlobalContext);
+};
